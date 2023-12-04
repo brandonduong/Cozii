@@ -1,4 +1,4 @@
-import { useFormData } from "@/contexts/FormContext";
+import { FormData, useFormData } from "@/contexts/FormContext";
 import { useForm } from "react-hook-form";
 import Field from "../Forms/Field";
 import { CustomInput } from "../Forms/CustomInput";
@@ -8,7 +8,7 @@ export default function Personal({
   onSubmit,
   children,
 }: {
-  onSubmit: () => void;
+  onSubmit: (data: FormData) => void;
   children: React.ReactNode;
 }) {
   const { form, setForm } = useFormData();
@@ -26,7 +26,7 @@ export default function Personal({
       onSubmit={handleSubmit((data) => {
         console.log(data);
         setForm({ ...form, ...data });
-        onSubmit();
+        onSubmit(data);
       })}
     >
       <Field label="Full Name" error={errors["name"]?.message} id="name">

@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState } from "react";
 
-interface FormData {
+export interface FormData {
   name: string;
   birth: string;
   nat: string;

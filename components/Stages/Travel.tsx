@@ -1,4 +1,4 @@
-import { useFormData } from "@/contexts/FormContext";
+import { FormData, useFormData } from "@/contexts/FormContext";
 import { useForm } from "react-hook-form";
 import Field from "../Forms/Field";
 import { CustomInput } from "../Forms/CustomInput";
@@ -8,7 +8,7 @@ export default function Travel({
   onSubmit,
   children,
 }: {
-  onSubmit: () => void;
+  onSubmit: (data: FormData) => void;
   children: React.ReactNode;
 }) {
   const { form, setForm } = useFormData();
@@ -26,7 +26,7 @@ export default function Travel({
       onSubmit={handleSubmit((data) => {
         console.log(data);
         setForm({ ...form, ...data });
-        onSubmit();
+        onSubmit(data);
       })}
     >
       <Field label="Departure Date" error={errors["dep"]?.message} id="dep">
@@ -56,14 +56,23 @@ export default function Travel({
         error={errors["acc"]?.message}
         id="acc"
       >
-        <CustomTextArea
-          type="text"
-          placeholder="Accomodation Preference"
-          {...register("acc", {
-            required: `Accomodation Preference is required.`,
+        <div className="flex gap-2 justify-between">
+          {["Space Hotel", "Martian Base"].map((option) => {
+            return (
+              <div key={`acc${option}`} className="flex items-center gap-2">
+                <span>{option}</span>
+                <CustomInput
+                  type="radio"
+                  value={option}
+                  {...register("acc", {
+                    required: `Accomodation Preference is required.`,
+                  })}
+                  id="acc"
+                />
+              </div>
+            );
           })}
-          id="acc"
-        />
+        </div>
       </Field>
 
       <Field

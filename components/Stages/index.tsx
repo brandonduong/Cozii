@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { clsx } from "clsx";
-import { useFormData } from "@/contexts/FormContext";
+import { FormData, useFormData } from "@/contexts/FormContext";
 import Personal from "./Personal";
 import Travel from "./Travel";
 import Health from "./Health";
@@ -17,11 +17,11 @@ export default function Stages() {
     "health and safety",
   ];
 
-  function onSubmit() {
+  function onSubmit(data: FormData) {
     if (stage < stages.length - 1) {
       setStage(stage + 1);
     } else {
-      alert(Object.entries(form).map(([key, value]) => `${key}: ${value}`));
+      alert(Object.entries(data).map(([key, val]) => `${key}: ${val}`));
     }
   }
 
@@ -45,17 +45,17 @@ export default function Stages() {
     <div>
       <h3 className="capitalize">{stages[stage]}</h3>
       {stage === 0 && (
-        <Personal onSubmit={() => onSubmit()}>
+        <Personal onSubmit={(data) => onSubmit(data)}>
           <NavButtons />
         </Personal>
       )}
       {stage === 1 && (
-        <Travel onSubmit={() => onSubmit()}>
+        <Travel onSubmit={(data) => onSubmit(data)}>
           <NavButtons />
         </Travel>
       )}
       {stage === 2 && (
-        <Health onSubmit={() => onSubmit()}>
+        <Health onSubmit={(data) => onSubmit(data)}>
           <NavButtons />
         </Health>
       )}

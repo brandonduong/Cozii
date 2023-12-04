@@ -1,22 +1,35 @@
-import { useFormData } from "@/contexts/FormContext";
+import { FormData, useFormData } from "@/contexts/FormContext";
 import { useForm } from "react-hook-form";
 import Field from "../Forms/Field";
 import { CustomInput } from "../Forms/CustomInput";
 import { CustomTextArea } from "../Forms/CustomTextArea";
+import { useEffect } from "react";
 
 export default function Health({
   onSubmit,
   children,
 }: {
-  onSubmit: () => void;
+  onSubmit: (data: FormData) => void;
   children: React.ReactNode;
 }) {
   const { form, setForm } = useFormData();
   const {
     handleSubmit,
     register,
+    unregister,
     formState: { errors },
+    watch,
   } = useForm({ defaultValues: form });
+
+  const watchHealthDeclaration = watch("health");
+
+  useEffect(() => {
+    if (watchHealthDeclaration === "Yes") {
+      register("med");
+    } else {
+      unregister("med");
+    }
+  }, [register, unregister, watchHealthDeclaration]);
 
   console.log(errors);
 
@@ -26,7 +39,7 @@ export default function Health({
       onSubmit={handleSubmit((data) => {
         console.log(data);
         setForm({ ...form, ...data });
-        onSubmit();
+        onSubmit(data);
       })}
     >
       <Field
@@ -85,20 +98,22 @@ export default function Health({
         />
       </Field>
 
-      <Field
-        label=" Any Medical Conditions"
-        error={errors["med"]?.message}
-        id="med"
-      >
-        <CustomTextArea
-          type="text"
-          placeholder="Any Medical Conditions"
-          {...register("med", {
-            required: `Any Medical Conditions is required.`,
-          })}
+      {watchHealthDeclaration === "Yes" && (
+        <Field
+          label="Any Medical Conditions"
+          error={errors["med"]?.message}
           id="med"
-        />
-      </Field>
+        >
+          <CustomTextArea
+            type="text"
+            placeholder="Any Medical Conditions"
+            {...register("med", {
+              required: `Any Medical Conditions is required.`,
+            })}
+            id="med"
+          />
+        </Field>
+      )}
 
       {children}
     </form>
