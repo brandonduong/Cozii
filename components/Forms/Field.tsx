@@ -1,8 +1,10 @@
+import { FormField } from "@/contexts/FormContext";
+
 interface FieldProps {
   children: React.ReactNode;
   label: string;
   error: string | undefined;
-  id: string;
+  id: FormField;
 }
 export default function Field({ children, label, error, id }: FieldProps) {
   return (

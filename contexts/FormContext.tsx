@@ -13,7 +13,8 @@ interface FormData {
   acc: string;
   special: string;
   health: string;
-  emergency: string;
+  emergencyEmail: string;
+  emergencyPhone: string;
   med: string;
 }
 
@@ -22,13 +23,6 @@ export type FormField = keyof FormData;
 interface FormDataType {
   form: FormData;
   setForm: (form: FormData) => void;
-}
-
-export interface FieldType {
-  type: string;
-  placeholder: string;
-  pattern?: RegExp;
-  id: FormField;
 }
 
 export const FormContext = createContext<FormDataType>({} as FormDataType);
@@ -45,7 +39,8 @@ export function FormProvider({ children }: { children: React.ReactNode }) {
     acc: "",
     special: "",
     health: "",
-    emergency: "",
+    emergencyEmail: "",
+    emergencyPhone: "",
     med: "",
   });
   const value = { form, setForm };
