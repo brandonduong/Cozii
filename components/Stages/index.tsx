@@ -48,17 +48,17 @@ export default function Stages() {
       </h3>
       <hr className="border-black my-2" />
       {stage === 0 && (
-        <Personal onSubmit={(data) => onSubmit(data)}>
+        <Personal onSubmit={() => onSubmit()}>
           <NavButtons />
         </Personal>
       )}
       {stage === 1 && (
-        <Travel onSubmit={(data) => onSubmit(data)}>
+        <Travel onSubmit={() => onSubmit()}>
           <NavButtons />
         </Travel>
       )}
       {stage === 2 && (
-        <Health onSubmit={(data) => onSubmit(data)}>
+        <Health onSubmit={() => onSubmit()}>
           <NavButtons />
         </Health>
       )}
