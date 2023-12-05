@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { clsx } from "clsx";
-import { FormData, useFormData } from "@/contexts/FormContext";
+import { useFormData } from "@/contexts/FormContext";
 import Personal from "./Personal";
 import Travel from "./Travel";
 import Health from "./Health";
@@ -12,7 +12,6 @@ export default function Stages() {
 
   const stages: string[] = [
     "personal information",
-
     "travel preferences",
     "health and safety",
   ];
