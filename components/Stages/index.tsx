@@ -30,11 +30,17 @@ export default function Stages() {
       <div className="flex justify-between gap-2">
         <button
           onClick={() => setStage(stage - 1)}
-          className={clsx({ invisible: stage === 0 })}
+          className={clsx(
+            { invisible: stage === 0 },
+            "text-white bg-black rounded-xl py-2 basis-1/2"
+          )}
         >
-          Prev
+          Previous
         </button>
-        <button type="submit">
+        <button
+          type="submit"
+          className="text-white bg-black rounded-xl py-2 basis-1/2"
+        >
           {stage === stages.length - 1 ? "Submit" : "Next"}
         </button>
       </div>

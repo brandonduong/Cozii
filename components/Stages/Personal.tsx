@@ -52,14 +52,18 @@ export default function Personal({
       </Field>
 
       <Field label="Nationality" error={errors["nat"]?.message} id="nat">
-        <CustomInput
-          type="text"
-          placeholder="Nationality"
+        <select
           {...register("nat", {
             required: `Nationality is required.`,
           })}
-          id="nat"
-        />
+          className="rounded-xl border-2 border-black focus:border-pink-500 px-2 py-1"
+        >
+          <option value="" disabled selected>
+            Select Nationality
+          </option>
+          <option value="Earth">Earth</option>
+          <option value="Not Earth">Not Earth</option>
+        </select>
       </Field>
 
       <Field label="Email" error={errors["email"]?.message} id="email">
