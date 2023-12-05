@@ -57,8 +57,9 @@ export default function Personal({
             required: `Nationality is required.`,
           })}
           className="rounded-xl border-2 border-black focus:border-pink-500 px-2 py-1"
+          defaultValue={""}
         >
-          <option value="" disabled selected>
+          <option value="" disabled>
             Select Nationality
           </option>
           <option value="Earth">Earth</option>
