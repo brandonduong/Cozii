@@ -6,7 +6,7 @@ export const CustomTextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
     return (
       <textarea
         ref={ref}
-        className="rounded border-2 border-pink-500 px-2 py-1 focus:outline-none text-black"
+        className="rounded-xl border-2 border-black focus:border-pink-500 px-2 py-1 focus:outline-none text-black"
         {...props}
       />
     );

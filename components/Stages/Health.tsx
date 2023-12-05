@@ -47,7 +47,7 @@ export default function Health({
         error={errors["health"]?.message}
         id="health"
       >
-        <div className="flex gap-2 justify-evenly">
+        <div className="flex gap-2 justify-between">
           {["Yes", "No"].map((option) => {
             return (
               <div key={`health${option}`} className="flex items-center gap-2">
