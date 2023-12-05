@@ -48,6 +48,9 @@ export default function Travel({
           placeholder="Return Date"
           {...register("ret", {
             required: `Return Date is required.`,
+            validate: (ret) =>
+              getValues("dep") < ret ||
+              "Return date must be after Departure Date",
           })}
           id="ret"
         />
