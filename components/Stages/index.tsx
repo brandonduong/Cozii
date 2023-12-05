@@ -8,7 +8,6 @@ import Health from "./Health";
 
 export default function Stages() {
   const [stage, setStage] = useState(0);
-  const { form } = useFormData();
 
   const stages: string[] = [
     "personal information",
@@ -43,7 +42,7 @@ export default function Stages() {
 
   return (
     <div className="px-6 py-2 bg-gray-100 rounded-xl border-2 border-black text-black">
-      <h3 className="capitalize text-xl font-bold text-center">
+      <h3 className="capitalize text-xl font-black text-center">
         {stages[stage]}
       </h3>
       <hr className="border-black my-2" />

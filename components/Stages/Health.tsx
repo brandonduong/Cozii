@@ -19,6 +19,7 @@ export default function Health({
     unregister,
     formState: { errors },
     watch,
+    getValues,
   } = useForm({ defaultValues: form });
 
   const watchHealthDeclaration = watch("health");
@@ -35,12 +36,13 @@ export default function Health({
 
   return (
     <form
-      className="flex flex-col gap-2"
+      className="flex flex-col gap-4"
       onSubmit={handleSubmit((data) => {
         console.log(data);
         setForm({ ...form, ...data });
         onSubmit(data);
       })}
+      onChange={() => setForm(getValues())}
     >
       <Field
         label="Health Declaration"

@@ -16,18 +16,20 @@ export default function Travel({
     handleSubmit,
     register,
     formState: { errors },
+    getValues,
   } = useForm({ defaultValues: form });
 
   console.log(errors);
 
   return (
     <form
-      className="flex flex-col gap-2"
+      className="flex flex-col gap-4"
       onSubmit={handleSubmit((data) => {
         console.log(data);
         setForm({ ...form, ...data });
         onSubmit(data);
       })}
+      onChange={() => setForm(getValues())}
     >
       <Field label="Departure Date" error={errors["dep"]?.message} id="dep">
         <CustomInput

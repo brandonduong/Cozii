@@ -9,11 +9,11 @@ interface FieldProps {
 export default function Field({ children, label, error, id }: FieldProps) {
   return (
     <div className="flex flex-col">
-      <label htmlFor={id} className="text-lg">
+      <label htmlFor={id} className="text-lg font-bold">
         {label}
       </label>
       {children}
-      {error && <small className="error">{error}</small>}
+      {error && <small className="text-red-600">{error}</small>}
     </div>
   );
 }
