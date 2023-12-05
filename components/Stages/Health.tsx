@@ -9,7 +9,7 @@ export default function Health({
   onSubmit,
   children,
 }: {
-  onSubmit: (data: FormData) => void;
+  onSubmit: () => void;
   children: React.ReactNode;
 }) {
   const { form, setForm } = useFormData();
@@ -39,8 +39,7 @@ export default function Health({
       className="flex flex-col gap-4"
       onSubmit={handleSubmit((data) => {
         console.log(data);
-        setForm({ ...form, ...data });
-        onSubmit(data);
+        onSubmit();
       })}
       onChange={() => setForm(getValues())}
     >

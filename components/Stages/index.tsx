@@ -8,6 +8,7 @@ import Health from "./Health";
 
 export default function Stages() {
   const [stage, setStage] = useState(0);
+  const { form } = useFormData();
 
   const stages: string[] = [
     "personal information",
@@ -16,11 +17,11 @@ export default function Stages() {
     "health and safety",
   ];
 
-  function onSubmit(data: FormData) {
+  function onSubmit() {
     if (stage < stages.length - 1) {
       setStage(stage + 1);
     } else {
-      alert(Object.entries(data).map(([key, val]) => `${key}: ${val}`));
+      alert(Object.entries(form).map(([key, val]) => `${key}: ${val}\n`));
     }
   }
 
